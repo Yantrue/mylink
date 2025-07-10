@@ -136,8 +136,8 @@ h1 {
 /* --- Style untuk tombol musik --- */
 #musicToggle {
   position: fixed;
-  top: 5px;   /* Naikin tombol lebih ke atas */
-  right: 5px; /* Naikin tombol lebih ke kanan */
+  top: 5px;    /* Naikkan tombol ke atas */
+  right: 5px;  /* Naikkan tombol ke kanan */
   background: transparent;
   border: none;
   color: white;
@@ -183,6 +183,7 @@ audio {
   display: none !important;
 }
 
+/* Responsive untuk layar kecil */
 @media (max-width: 400px) {
   main {
     padding: 2rem 1.5rem;
