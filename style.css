@@ -1,64 +1,144 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
-  text-align: center;
-  padding: 2em;
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-img {
-  width: 150px;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+main {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  padding: 2.5rem 3rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.foto-wrapper {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.foto-wrapper img {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  transition: transform 0.3s ease;
+}
+
+.foto-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  color: #fff;
+  user-select: none;
+}
+
+.foto-wrapper:hover .tooltip-text {
+  opacity: 1;
 }
 
 h1 {
-  margin-top: 0.5em;
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-.links {
-  margin-top: 2em;
+.subtitle {
+  margin-top: 0.2rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #d1d1d1;
+}
+
+.links-section {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 1.3rem;
 }
 
-.links a {
+.btn {
   display: flex;
   align-items: center;
-  gap: 0.8em;
+  gap: 1rem;
+  background: #222;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
   text-decoration: none;
-  color: white;
-  padding: 1em;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.1em;
-  transition: filter 0.3s;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Logo icon ukuran */
-.links a i,
-.links a .icon {
-  font-size: 1.4em;
+.btn i,
+.btn .icon {
+  font-size: 1.3rem;
   width: 24px;
   height: 24px;
+  display: inline-block;
+  object-fit: contain;
 }
 
-/* Background warna sesuai brand */
-.links a.facebook {
-  background: #1877f2; /* Biru Facebook */
+/* Warna sesuai brand */
+.btn.facebook {
+  background-color: #1877f2;
+  box-shadow: 0 4px 12px rgb(24 119 242 / 0.5);
+}
+.btn.github {
+  background-color: #333;
+  box-shadow: 0 4px 12px rgb(51 51 51 / 0.5);
+}
+.btn.saweria {
+  background-color: #ff5a00;
+  box-shadow: 0 4px 12px rgb(255 90 0 / 0.5);
 }
 
-.links a.github {
-  background: #333; /* Hitam GitHub */
+.btn:hover {
+  filter: brightness(110%);
+  transform: scale(1.05);
 }
 
-.links a.saweria {
-  background: #ff5a00; /* Oranye Saweria */
-}
-
-/* Hover efek */
-.links a:hover {
-  filter: brightness(85%);
+@media (max-width: 400px) {
+  main {
+    padding: 2rem 1.5rem;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
 }
