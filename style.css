@@ -90,9 +90,11 @@ h1 {
   gap: 1.3rem;
 }
 
+/* Tombol sosial media */
 .btn {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* icon ke kanan */
   gap: 1rem;
   background: #222;
   padding: 1rem 1.5rem;
@@ -103,15 +105,21 @@ h1 {
   text-decoration: none;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  position: relative;
 }
 
-.btn i,
 .btn .icon {
   font-size: 1.3rem;
   width: 24px;
   height: 24px;
-  display: inline-block;
   object-fit: contain;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+
+/* Animasi putar icon tombol sosial media */
+.btn.spin .icon {
+  animation: spin 1s linear;
 }
 
 /* Warna sesuai brand */
@@ -134,10 +142,10 @@ h1 {
 }
 
 /* --- Style untuk tombol musik --- */
-#musicToggle {
+#bgmToggle {
   position: fixed;
-  top: 5px;    /* Naikkan tombol ke atas */
-  right: 5px;  /* Naikkan tombol ke kanan */
+  top: 5px;   /* Naikin tombol lebih ke atas */
+  right: 5px; /* Naikin tombol lebih ke kanan */
   background: transparent;
   border: none;
   color: white;
@@ -147,7 +155,7 @@ h1 {
   transition: transform 1s linear;
 }
 
-#musicToggle.playing {
+#bgmToggle.playing {
   animation: spin 3s linear infinite;
 }
 
@@ -161,7 +169,7 @@ h1 {
 }
 
 /* Popup judul lagu */
-#musicPopup {
+#bgmPopup {
   position: fixed;
   top: 40px;
   right: 5px;
@@ -183,7 +191,6 @@ audio {
   display: none !important;
 }
 
-/* Responsive untuk layar kecil */
 @media (max-width: 400px) {
   main {
     padding: 2rem 1.5rem;
