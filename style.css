@@ -136,8 +136,8 @@ h1 {
 /* --- Style untuk tombol musik --- */
 #musicToggle {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 5px;       /* Naik lebih ke atas */
+  right: 5px;     /* Naik lebih ke kanan */
   background: transparent;
   border: none;
   color: white;
