@@ -25,15 +25,40 @@ h1 {
 }
 
 .links a {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
   text-decoration: none;
-  background: #007bff;
   color: white;
   padding: 1em;
   border-radius: 8px;
   font-weight: bold;
-  transition: background 0.3s;
+  font-size: 1.1em;
+  transition: filter 0.3s;
 }
 
+/* Logo icon ukuran */
+.links a i,
+.links a .icon {
+  font-size: 1.4em;
+  width: 24px;
+  height: 24px;
+}
+
+/* Background warna sesuai brand */
+.links a.facebook {
+  background: #1877f2; /* Biru Facebook */
+}
+
+.links a.github {
+  background: #333; /* Hitam GitHub */
+}
+
+.links a.saweria {
+  background: #ff5a00; /* Oranye Saweria */
+}
+
+/* Hover efek */
 .links a:hover {
-  background: #0056b3;
+  filter: brightness(85%);
 }
