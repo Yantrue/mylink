@@ -109,7 +109,8 @@ h1 {
 
 .btn .icon {
   position: relative;
-  right: 16px; /* icon kiri */
+  left: 16px; /* icon kiri */
+  right: auto; /* Pastikan right tidak aktif */
   font-size: 1.3rem;
   width: 24px;
   height: 24px;
