@@ -80,28 +80,47 @@
     const bgmToggle = document.getElementById('bgmToggle');
     const bgmPopup = document.getElementById('bgmPopup');
 
-    // Mulai dengan tombol dan popup disembunyikan
-    bgmToggle.style.display = 'none';
+    // Pastikan tombol muncul selalu
+    bgmToggle.style.display = 'block';
     bgmPopup.style.display = 'none';
 
-    window.addEventListener('load', () => {
-      // Tampilkan tombol dan popup 5 detik
-      bgmToggle.style.display = 'block';
+    // Fungsi untuk tampilkan popup sementara
+    function showPopup() {
       bgmPopup.style.display = 'block';
-
       setTimeout(() => {
-        bgmToggle.style.display = 'none';
         bgmPopup.style.display = 'none';
-      }, 5000);
-    });
+      }, 3000); // popup 3 detik
+    }
 
-    // Toggle play/pause bgm
+    // Update tombol icon dan animasi saat play/pause
+    function updateButton() {
+      if (bgm.paused) {
+        bgmToggle.classList.remove('playing');
+        bgmToggle.innerHTML = '<i class="fas fa-music"></i>';
+      } else {
+        bgmToggle.classList.add('playing');
+        bgmToggle.innerHTML = '<i class="fas fa-music"></i>';
+      }
+    }
+
+    // Event klik tombol bgmToggle
     bgmToggle.addEventListener('click', () => {
       if (bgm.paused) {
         bgm.play();
       } else {
         bgm.pause();
       }
+      showPopup();
+      updateButton();
+    });
+
+    // Update button status saat audio otomatis play/pause (misal dari browser)
+    bgm.addEventListener('play', updateButton);
+    bgm.addEventListener('pause', updateButton);
+
+    // Inisialisasi status tombol di load
+    window.addEventListener('load', () => {
+      updateButton();
     });
   </script>
 </body>
