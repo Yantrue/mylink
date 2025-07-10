@@ -136,39 +136,51 @@ h1 {
 /* --- Style untuk tombol musik --- */
 #musicToggle {
   position: fixed;
-  top: 5px;       /* Naik lebih ke atas */
-  right: 5px;     /* Naik lebih ke kanan */
+  top: 5px;   /* Naikin tombol lebih ke atas */
+  right: 5px; /* Naikin tombol lebih ke kanan */
   background: transparent;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 28px;
   z-index: 1000;
   transition: transform 1s linear;
 }
+
 #musicToggle.playing {
   animation: spin 3s linear infinite;
 }
+
 @keyframes spin {
-  from {transform: rotate(0deg);}
-  to {transform: rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Popup judul lagu */
 #musicPopup {
   position: fixed;
-  top: 50px;
-  right: 10px;
-  background: rgba(0,0,0,0.75);
+  top: 40px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.75);
   padding: 8px 12px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
   color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   display: none;
   user-select: none;
   z-index: 1001;
+}
+
+/* Sembunyikan audio player */
+#audio,
+audio {
+  display: none !important;
 }
 
 @media (max-width: 400px) {
