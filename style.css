@@ -98,6 +98,7 @@ h1 {
   justify-content: center; /* teks di tengah */
   background: #222;
   padding: 1rem 1.5rem;
+  padding-left: 48px; /* tambah padding kiri agar teks tidak nabrak icon */
   border-radius: 10px;
   font-weight: 600;
   font-size: 1.1rem;
@@ -108,9 +109,10 @@ h1 {
 }
 
 .btn .icon {
-  position: relative;
-  left: 16px; /* icon kiri */
-  right: auto; /* Pastikan right tidak aktif */
+  position: absolute;
+  left: 16px;          /* icon benar-benar di kiri */
+  top: 50%;            /* tengah secara vertikal */
+  transform: translateY(-50%);
   font-size: 1.3rem;
   width: 24px;
   height: 24px;
