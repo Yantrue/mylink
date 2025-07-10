@@ -48,13 +48,16 @@
 
     <section class="links-section">
       <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
-        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
+        Facebook
+        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" />
       </a>
       <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
-        <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> Github
+        Github
+        <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" />
       </a>
       <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
-        <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
+        Saweria
+        <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" />
       </a>
     </section>
   </main>
@@ -80,47 +83,45 @@
     const bgmToggle = document.getElementById('bgmToggle');
     const bgmPopup = document.getElementById('bgmPopup');
 
-    // Pastikan tombol muncul selalu
-    bgmToggle.style.display = 'block';
+    // Mulai dengan tombol dan popup disembunyikan
+    bgmToggle.style.display = 'none';
     bgmPopup.style.display = 'none';
 
-    // Fungsi untuk tampilkan popup sementara
-    function showPopup() {
+    window.addEventListener('load', () => {
+      // Tampilkan tombol dan popup 5 detik
+      bgmToggle.style.display = 'block';
       bgmPopup.style.display = 'block';
+
       setTimeout(() => {
+        bgmToggle.style.display = 'none';
         bgmPopup.style.display = 'none';
-      }, 3000); // popup 3 detik
-    }
+      }, 5000);
+    });
 
-    // Update tombol icon dan animasi saat play/pause
-    function updateButton() {
-      if (bgm.paused) {
-        bgmToggle.classList.remove('playing');
-        bgmToggle.innerHTML = '<i class="fas fa-music"></i>';
-      } else {
-        bgmToggle.classList.add('playing');
-        bgmToggle.innerHTML = '<i class="fas fa-music"></i>';
-      }
-    }
-
-    // Event klik tombol bgmToggle
+    // Toggle play/pause bgm
     bgmToggle.addEventListener('click', () => {
       if (bgm.paused) {
         bgm.play();
+        bgmToggle.classList.add('playing');
       } else {
         bgm.pause();
+        bgmToggle.classList.remove('playing');
       }
-      showPopup();
-      updateButton();
     });
 
-    // Update button status saat audio otomatis play/pause (misal dari browser)
-    bgm.addEventListener('play', updateButton);
-    bgm.addEventListener('pause', updateButton);
+    // Animasi putar icon saat tombol sosial media diklik
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Cegah double click spam
+        if (btn.classList.contains('spin')) return;
 
-    // Inisialisasi status tombol di load
-    window.addEventListener('load', () => {
-      updateButton();
+        btn.classList.add('spin');
+
+        // Hilangkan class setelah animasi selesai (1s)
+        setTimeout(() => {
+          btn.classList.remove('spin');
+        }, 1000);
+      });
     });
   </script>
 </body>
