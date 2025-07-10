@@ -4,16 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NeuLink</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -34,11 +26,7 @@
   <main>
     <section class="profile-section">
       <label for="uploadFoto" class="foto-wrapper" title="Klik untuk ganti foto profil">
-        <img
-          id="fotoProfil"
-          src="image/pp.png"
-          alt="Foto Profil"
-        />
+        <img id="fotoProfil" src="image/pp.png" alt="Foto Profil" />
         <input type="file" id="uploadFoto" accept="image/*" hidden />
         <span class="tooltip-text">Ganti Foto</span>
       </label>
@@ -46,17 +34,17 @@
       <p class="subtitle">Yahoo guys</p>
     </section>
 
-   <section class="links-section">
-  <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
-    <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
-  </a>
-  <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
-    <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> GitHub
-  </a>
-  <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
-    <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
-  </a>
-</section>
+    <section class="links-section">
+      <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
+        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
+      </a>
+      <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
+        <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> GitHub
+      </a>
+      <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
+        <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
+      </a>
+    </section>
   </main>
 
   <script>
@@ -80,22 +68,16 @@
     const bgmToggle = document.getElementById('bgmToggle');
     const bgmPopup = document.getElementById('bgmPopup');
 
-    // Mulai dengan tombol dan popup disembunyikan
-    bgmToggle.style.display = 'none';
-    bgmPopup.style.display = 'none';
-
+    // Tampilkan tombol dan popup untuk 5 detik
     window.addEventListener('load', () => {
-      // Tampilkan tombol dan popup 5 detik
       bgmToggle.style.display = 'block';
       bgmPopup.style.display = 'block';
-
       setTimeout(() => {
         bgmToggle.style.display = 'none';
         bgmPopup.style.display = 'none';
       }, 5000);
     });
 
-    // Toggle play/pause bgm
     bgmToggle.addEventListener('click', () => {
       if (bgm.paused) {
         bgm.play();
@@ -106,18 +88,11 @@
       }
     });
 
-    // Animasi putar icon saat tombol sosial media diklik
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // Cegah double click spam
-        if (btn.classList.contains('spin')) return;
-
-        btn.classList.add('spin');
-
-        // Hilangkan class setelah animasi selesai (1s)
-        setTimeout(() => {
-          btn.classList.remove('spin');
-        }, 1000);
+    // Tambahkan animasi spin saat icon sosial media diklik
+    document.querySelectorAll('.btn .icon').forEach(icon => {
+      icon.closest('a').addEventListener('click', () => {
+        icon.classList.add('spin');
+        setTimeout(() => icon.classList.remove('spin'), 1000);
       });
     });
   </script>
