@@ -92,10 +92,10 @@ h1 {
 
 /* Tombol sosial media */
 .btn {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ikon ke kanan */
-  gap: 1rem;
+  justify-content: center; /* teks di tengah */
   background: #222;
   padding: 1rem 1.5rem;
   border-radius: 10px;
@@ -105,15 +105,22 @@ h1 {
   text-decoration: none;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
-  position: relative;
 }
 
 .btn .icon {
+  position: absolute;
+  right: 16px; /* icon kanan */
   font-size: 1.3rem;
   width: 24px;
   height: 24px;
   object-fit: contain;
+  cursor: pointer;
   transition: transform 0.6s ease;
+}
+
+/* Animasi putar icon tombol sosial media */
+.btn.spin .icon {
+  animation: spin 1s linear;
 }
 
 /* Warna sesuai brand */
@@ -135,11 +142,11 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Tombol musik */
+/* --- Style untuk tombol musik --- */
 #bgmToggle {
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 5px;   /* Naikin tombol lebih ke atas */
+  right: 5px; /* Naikin tombol lebih ke kanan */
   background: transparent;
   border: none;
   color: white;
@@ -179,21 +186,7 @@ h1 {
   z-index: 1001;
 }
 
-/* Icon spin animasi saat diklik */
-.icon.spin {
-  animation: rotateIcon 1s ease;
-}
-
-@keyframes rotateIcon {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Sembunyikan audio player default */
+/* Sembunyikan audio player */
 #audio,
 audio {
   display: none !important;
