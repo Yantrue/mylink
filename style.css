@@ -108,8 +108,8 @@ h1 {
 }
 
 .btn .icon {
-  position: absolute;
-  right: 16px; /* icon kanan */
+  position: relative;
+  right: 16px; /* icon kiri */
   font-size: 1.3rem;
   width: 24px;
   height: 24px;
