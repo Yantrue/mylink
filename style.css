@@ -142,3 +142,35 @@ h1 {
     padding: 0.8rem 1rem;
   }
 }
+
+/* Tombol Audio */
+.audio-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.8s ease;
+}
+
+.audio-toggle.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.audio-toggle:hover {
+  background-color: #00c4cc;
+  transform: scale(1.1);
+}
