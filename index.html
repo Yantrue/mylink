@@ -8,35 +8,12 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
     rel="stylesheet"
   />
+  <!-- Font Awesome tanpa integrity -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pbBgzQ+8jrNyq3Etv6S2lX6F6J0TK4+w6bZdNRp0qKqO/aUxPvKRvqJ/6r0p2t4uPEhl/CBLMeNjXWcFtdvX0A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
   />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Tombol mute/unmute fixed pojok kanan atas */
-    #muteBtn {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      background: rgba(0,0,0,0.6);
-      border: none;
-      border-radius: 50%;
-      padding: 10px 14px;
-      cursor: pointer;
-      color: white;
-      font-size: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      z-index: 9999;
-      transition: background 0.3s ease;
-    }
-    #muteBtn:hover {
-      background: rgba(0,0,0,0.85);
-    }
-  </style>
 </head>
 <body>
   <!-- Pemutar musik -->
@@ -46,9 +23,19 @@
   </audio>
 
   <!-- Tombol mute/unmute -->
-  <button id="muteBtn" title="Mute / Unmute">
-    <i class="fas fa-volume-up"></i>
-  </button>
+  <button id="muteBtn" style="
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 999;
+  ">Mute</button>
 
   <main>
     <section class="profile-section">
@@ -67,7 +54,7 @@
 
     <section class="links-section">
       <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
-        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
+        <img src="https://facebook.com/favicon.ico" alt="Facebook" class="icon" /> Facebook
       </a>
       <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
         <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> Github
@@ -94,22 +81,13 @@
       }
     });
 
-    // Mute/Unmute BGM dengan ikon berubah
+    // Mute/Unmute BGM
     const bgm = document.getElementById('bgm');
     const muteBtn = document.getElementById('muteBtn');
-    const icon = muteBtn.querySelector('i');
 
     muteBtn.addEventListener('click', () => {
       bgm.muted = !bgm.muted;
-      if (bgm.muted) {
-        icon.classList.remove('fa-volume-up');
-        icon.classList.add('fa-volume-mute');
-        muteBtn.title = 'Unmute';
-      } else {
-        icon.classList.add('fa-volume-up');
-        icon.classList.remove('fa-volume-mute');
-        muteBtn.title = 'Mute';
-      }
+      muteBtn.textContent = bgm.muted ? 'Unmute' : 'Mute';
     });
   </script>
 </body>
