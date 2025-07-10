@@ -1,273 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NeuLink</title>
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-  rel="stylesheet"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
-<style>
-  /* --- CSS kamu sebelumnya --- */
-  /* Reset */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  main {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    padding: 2.5rem 3rem;
-    max-width: 380px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  }
-  .profile-section {
-    margin-bottom: 2rem;
-    position: relative;
-  }
-  .foto-wrapper {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-  }
-  .foto-wrapper img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    transition: transform 0.3s ease;
-  }
-  .foto-wrapper:hover img {
-    transform: scale(1.05);
-  }
-  .tooltip-text {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    color: #fff;
-    user-select: none;
-  }
-  .foto-wrapper:hover .tooltip-text {
-    opacity: 1;
-  }
-  h1 {
-    margin-top: 1rem;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-  }
-  .subtitle {
-    margin-top: 0.2rem;
-    font-weight: 400;
-    font-size: 1rem;
-    color: #d1d1d1;
-  }
-  .links-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.3rem;
-  }
-  .btn {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: #222;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #fff;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  .btn i,
-  .btn .icon {
-    font-size: 1.3rem;
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    object-fit: contain;
-  }
-  /* Warna sesuai brand */
-  .btn.facebook {
-    background-color: #1877f2;
-    box-shadow: 0 4px 12px rgb(24 119 242 / 0.5);
-  }
-  .btn.github {
-    background-color: #333;
-    box-shadow: 0 4px 12px rgb(51 51 51 / 0.5);
-  }
-  .btn.saweria {
-    background-color: #ff5a00;
-    box-shadow: 0 4px 12px rgb(255 90 0 / 0.5);
-  }
-  .btn:hover {
-    filter: brightness(110%);
-    transform: scale(1.05);
-  }
-  @media (max-width: 400px) {
-    main {
-      padding: 2rem 1.5rem;
-    }
-    .btn {
-      font-size: 1rem;
-      padding: 0.8rem 1rem;
-    }
-  }
-
-  /* --- Style untuk tombol musik --- */
-  #musicToggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 1000;
-    transition: transform 1s linear;
-  }
-  #musicToggle.playing {
-    animation: spin 3s linear infinite;
-  }
-  @keyframes spin {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
-  }
-
-  /* Popup judul lagu */
-  #musicPopup {
-    position: fixed;
-    top: 50px;
-    right: 10px;
-    background: rgba(0,0,0,0.75);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    display: none;
-    user-select: none;
-    z-index: 1001;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NeuLink</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Pemutar musik -->
+  <audio id="bgm" autoplay loop>
+    <source src="music/bgm.mp3" type="audio/mpeg" />
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
 
-<!-- Audio bgm -->
-<audio id="bgm" loop>
-  <source src="music/bgm.mp3" type="audio/mpeg" />
-  Browser kamu tidak mendukung pemutar audio.
-</audio>
+  <!-- Tombol play/pause BGM -->
+  <button id="bgmToggle" title="Play / Pause BGM">
+    <i class="fas fa-music"></i>
+  </button>
 
-<!-- Tombol musik -->
-<button id="musicToggle" aria-label="Toggle background music">
-  <i class="fas fa-music"></i>
-</button>
+  <!-- Popup judul BGM -->
+  <div id="bgmPopup">BGM 1</div>
 
-<!-- Popup judul lagu -->
-<div id="musicPopup">BGM 1</div>
+  <main>
+    <section class="profile-section">
+      <label for="uploadFoto" class="foto-wrapper" title="Klik untuk ganti foto profil">
+        <img
+          id="fotoProfil"
+          src="image/pp.png"
+          alt="Foto Profil"
+        />
+        <input type="file" id="uploadFoto" accept="image/*" hidden />
+        <span class="tooltip-text">Ganti Foto</span>
+      </label>
+      <h1>Neu_GI</h1>
+      <p class="subtitle">Yahoo guys</p>
+    </section>
 
-<main>
-  <section class="profile-section">
-    <label for="uploadFoto" class="foto-wrapper" title="Klik untuk ganti foto profil">
-      <img
-        id="fotoProfil"
-        src="image/pp.png"
-        alt="Foto Profil"
-      />
-      <input type="file" id="uploadFoto" accept="image/*" hidden />
-      <span class="tooltip-text">Ganti Foto</span>
-    </label>
-    <h1>Neu_GI</h1>
-    <p class="subtitle">Yahoo guys</p>
-  </section>
+    <section class="links-section">
+      <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
+        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
+      </a>
+      <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
+        <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> Github
+      </a>
+      <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
+        <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
+      </a>
+    </section>
+  </main>
 
-  <section class="links-section">
-    <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
-      <img src="https://facebook.com/favicon.ico" alt="Facebook" class="icon" /> Facebook
-    </a>
-    <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
-      <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> Github
-    </a>
-    <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
-      <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
-    </a>
-  </section>
-</main>
+  <script>
+    // Ganti foto profil
+    const uploadInput = document.getElementById('uploadFoto');
+    const fotoProfil = document.getElementById('fotoProfil');
 
-<script>
-  // Ganti foto profil
-  const uploadInput = document.getElementById('uploadFoto');
-  const fotoProfil = document.getElementById('fotoProfil');
+    uploadInput.addEventListener('change', () => {
+      const file = uploadInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          fotoProfil.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-  uploadInput.addEventListener('change', () => {
-    const file = uploadInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        fotoProfil.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
+    // BGM dan tombol toggle + popup
+    const bgm = document.getElementById('bgm');
+    const bgmToggle = document.getElementById('bgmToggle');
+    const bgmPopup = document.getElementById('bgmPopup');
 
-  // Music toggle
-  const bgm = document.getElementById('bgm');
-  const musicToggle = document.getElementById('musicToggle');
-  const musicPopup = document.getElementById('musicPopup');
+    // Mulai dengan tombol dan popup disembunyikan
+    bgmToggle.style.display = 'none';
+    bgmPopup.style.display = 'none';
 
-  let isPlaying = false;
+    window.addEventListener('load', () => {
+      // Tampilkan tombol dan popup 5 detik
+      bgmToggle.style.display = 'block';
+      bgmPopup.style.display = 'block';
 
-  musicToggle.addEventListener('click', () => {
-    if (isPlaying) {
-      bgm.pause();
-      musicToggle.classList.remove('playing');
-      musicPopup.style.display = 'none';
-    } else {
-      bgm.play().catch(() => {
-        // kalau gagal autoplay karena browser
-        alert('Klik tombol musik lagi untuk memulai lagu');
-      });
-      musicToggle.classList.add('playing');
-      musicPopup.style.display = 'block';
-    }
-    isPlaying = !isPlaying;
-  });
+      setTimeout(() => {
+        bgmToggle.style.display = 'none';
+        bgmPopup.style.display = 'none';
+      }, 5000);
+    });
 
-  // Kalau mau mulai langsung autoplay muted bisa diaktifkan begini
-  // bgm.muted = true;
-  // bgm.play();
-</script>
+    // Toggle play/pause bgm
+    bgmToggle.addEventListener('click', () => {
+      if (bgm.paused) {
+        bgm.play();
+      } else {
+        bgm.pause();
+      }
+    });
+  </script>
 </body>
 </html>
