@@ -106,12 +106,19 @@ h1 {
   text-decoration: none;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  opacity: 0; /* mulai sembunyi dulu biar animasi muncul */
+}
+
+/* Tombol mulai terlihat saat animasi berjalan */
+.btn.animate-left,
+.btn.animate-right {
+  opacity: 1;
 }
 
 .btn .icon {
   position: absolute;
-  left: 16px;          /* icon benar-benar di kiri */
-  top: 50%;            /* tengah secara vertikal */
+  left: 16px; /* icon benar-benar di kiri */
+  top: 50%; /* tengah secara vertikal */
   transform: translateY(-50%);
   font-size: 1.3rem;
   width: 24px;
@@ -148,7 +155,7 @@ h1 {
 /* --- Style untuk tombol musik --- */
 #bgmToggle {
   position: fixed;
-  top: 5px;   /* Naikin tombol lebih ke atas */
+  top: 5px; /* Naikin tombol lebih ke atas */
   right: 5px; /* Naikin tombol lebih ke kanan */
   background: transparent;
   border: none;
@@ -193,6 +200,37 @@ h1 {
 #audio,
 audio {
   display: none !important;
+}
+
+/* Animasi slide masuk dari kiri dan kanan */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.btn.animate-left {
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.btn.animate-right {
+  animation: slideInRight 0.6s ease forwards;
 }
 
 @media (max-width: 400px) {
