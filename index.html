@@ -7,27 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Visitor count di kiri atas */
-    #visitorCounter {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: rgba(44, 62, 80, 0.85);
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 14px;
-      z-index: 9999;
-      user-select: none;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    }
-  </style>
 </head>
 <body>
-  <!-- Visitor counter di kiri atas -->
+  <!-- Visitor Counter di kiri atas -->
   <div id="visitorCounter">Kunjungan: 0</div>
 
   <!-- Pemutar musik -->
@@ -69,16 +51,6 @@
   </main>
 
   <script>
-    // Visitor count lokal
-    (function () {
-      let visits = localStorage.getItem('visitorCount') || 0;
-      visits = Number(visits) + 1;
-      localStorage.setItem('visitorCount', visits);
-
-      const visitorCounter = document.getElementById('visitorCounter');
-      visitorCounter.textContent = `Kunjungan: ${visits}`;
-    })();
-
     // Ganti foto profil
     const uploadInput = document.getElementById('uploadFoto');
     const fotoProfil = document.getElementById('fotoProfil');
