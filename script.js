@@ -18,14 +18,13 @@ const bgm = document.getElementById('bgm');
 const bgmToggle = document.getElementById('bgmToggle');
 const bgmPopup = document.getElementById('bgmPopup');
 
+// Tampilkan tombol dan popup untuk 5 detik
 window.addEventListener('load', () => {
   bgmToggle.style.display = 'block';
   bgmPopup.style.display = 'block';
   setTimeout(() => {
     bgmPopup.style.display = 'none';
   }, 5000);
-  updateVisitorCounter();
-  animateLinks();
 });
 
 bgmToggle.addEventListener('click', () => {
@@ -38,7 +37,7 @@ bgmToggle.addEventListener('click', () => {
   }
 });
 
-// Animasi putar icon tombol sosial media
+// Tambahkan animasi spin saat icon sosial media diklik
 document.querySelectorAll('.btn .icon').forEach(icon => {
   icon.closest('a').addEventListener('click', () => {
     icon.classList.add('spin');
@@ -47,26 +46,13 @@ document.querySelectorAll('.btn .icon').forEach(icon => {
 });
 
 // Animasi tombol masuk dari kanan dan kiri secara bergantian
-function animateLinks() {
-  const linkButtons = document.querySelectorAll('.links-section .btn');
-  linkButtons.forEach((btn, index) => {
-    const isEven = index % 2 === 0;
-    const animationClass = isEven ? 'animate-left' : 'animate-right';
+const linkButtons = document.querySelectorAll('.links-section .btn');
 
-    setTimeout(() => {
-      btn.classList.add(animationClass);
-    }, index * 200);
-  });
-}
+linkButtons.forEach((btn, index) => {
+  const isEven = index % 2 === 0;
+  const animationClass = isEven ? 'animate-left' : 'animate-right';
 
-// Visitor counter pakai localStorage
-function updateVisitorCounter() {
-  const counterEl = document.getElementById('visitorCounter');
-  let count = localStorage.getItem('visitorCount');
-  if (!count) {
-    count = 0;
-  }
-  count = parseInt(count) + 1;
-  localStorage.setItem('visitorCount', count);
-  counterEl.textContent = 'Visitor Count: ' + count;
-}
+  setTimeout(() => {
+    btn.classList.add(animationClass);
+  }, index * 200);
+});
