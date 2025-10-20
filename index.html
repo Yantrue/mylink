@@ -50,6 +50,73 @@
   <!-- Visitor counter di kiri atas -->
   <div class="visitor-counter" id="visitorCounter">Visitor Count: 0</div>
 
-  <script src="script.js"></script>
+  <script>
+    // Ganti foto profil
+    const uploadInput = document.getElementById('uploadFoto');
+    const fotoProfil = document.getElementById('fotoProfil');
+
+    uploadInput.addEventListener('change', () => {
+      const file = uploadInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          fotoProfil.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // BGM dan tombol toggle + popup
+    const bgm = document.getElementById('bgm');
+    const bgmToggle = document.getElementById('bgmToggle');
+    const bgmPopup = document.getElementById('bgmPopup');
+
+    // Tampilkan tombol dan popup untuk 5 detik
+    window.addEventListener('load', () => {
+      bgmToggle.style.display = 'block';
+      bgmPopup.style.display = 'block';
+      setTimeout(() => {
+        bgmPopup.style.display = 'none';
+      }, 5000);
+
+      // Visitor count logic tanpa backend (localStorage)
+      const visitorCounterEl = document.getElementById('visitorCounter');
+      let visitorCount = localStorage.getItem('visitorCount');
+      if (!visitorCount) visitorCount = 0;
+      visitorCount = parseInt(visitorCount) + 1;
+      localStorage.setItem('visitorCount', visitorCount);
+      visitorCounterEl.textContent = `Visitor Count: ${visitorCount}`;
+    });
+
+    bgmToggle.addEventListener('click', () => {
+      if (bgm.paused) {
+        bgm.play();
+        bgmToggle.classList.add('playing');
+      } else {
+        bgm.pause();
+        bgmToggle.classList.remove('playing');
+      }
+    });
+
+    // Tambahkan animasi spin saat icon sosial media diklik
+    document.querySelectorAll('.btn .icon').forEach(icon => {
+      icon.closest('a').addEventListener('click', () => {
+        icon.classList.add('spin');
+        setTimeout(() => icon.classList.remove('spin'), 1000);
+      });
+    });
+
+    // Animasi tombol masuk dari kanan dan kiri secara bergantian
+    const linkButtons = document.querySelectorAll('.links-section .btn');
+
+    linkButtons.forEach((btn, index) => {
+      const isEven = index % 2 === 0;
+      const animationClass = isEven ? 'animate-left' : 'animate-right';
+
+      setTimeout(() => {
+        btn.classList.add(animationClass);
+      }, index * 200);
+    });
+  </script>
 </body>
 </html>
