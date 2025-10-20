@@ -9,16 +9,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  <!-- Pemutar musik -->
   <audio id="bgm" autoplay loop>
     <source src="music/bgm.mp3" type="audio/mpeg" />
     Browser kamu tidak mendukung pemutar audio.
   </audio>
 
+  <!-- Tombol play/pause BGM -->
   <button id="bgmToggle" title="Play / Pause BGM">
     <i class="fas fa-music"></i>
   </button>
 
+  <!-- Popup judul BGM -->
   <div id="bgmPopup">BGM 1</div>
 
   <main>
@@ -43,9 +45,10 @@
         <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
       </a>
     </section>
-
-    <div class="visitor-counter" id="visitorCounter">Visitor Count: 0</div>
   </main>
+
+  <!-- Visitor counter di kiri atas -->
+  <div class="visitor-counter" id="visitorCounter">Visitor Count: 0</div>
 
   <script src="script.js"></script>
 </body>
