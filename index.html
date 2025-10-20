@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Visitor Counter di kiri atas -->
-  <div id="visitorCounter" class="visitor-counter">Visitor count: 0</div>
-
   <!-- Pemutar musik -->
   <audio id="bgm" autoplay loop>
     <source src="music/bgm.mp3" type="audio/mpeg" />
@@ -51,19 +48,6 @@
   </main>
 
   <script>
-    // Visitor count sederhana dengan localStorage (tanpa backend)
-    const visitorCounter = document.getElementById('visitorCounter');
-    const countKey = 'visitor_count';
-    let count = localStorage.getItem(countKey);
-
-    if (!count) {
-      count = 1;
-    } else {
-      count = parseInt(count) + 1;
-    }
-    localStorage.setItem(countKey, count);
-    visitorCounter.textContent = `Visitor count: ${count}`;
-
     // Ganti foto profil
     const uploadInput = document.getElementById('uploadFoto');
     const fotoProfil = document.getElementById('fotoProfil');
@@ -84,6 +68,7 @@
     const bgmToggle = document.getElementById('bgmToggle');
     const bgmPopup = document.getElementById('bgmPopup');
 
+    // Tampilkan tombol dan popup untuk 5 detik
     window.addEventListener('load', () => {
       bgmToggle.style.display = 'block';
       bgmPopup.style.display = 'block';
@@ -102,7 +87,7 @@
       }
     });
 
-    // Animasi spin saat icon sosial media diklik
+    // Tambahkan animasi spin saat icon sosial media diklik
     document.querySelectorAll('.btn .icon').forEach(icon => {
       icon.closest('a').addEventListener('click', () => {
         icon.classList.add('spin');
