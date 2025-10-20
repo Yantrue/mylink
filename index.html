@@ -1,94 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Profile & Visitor Counter</title>
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <title>NeuLink</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Visitor Counter fixed kiri atas -->
-  <div class="visitor-counter fixed" id="visitorCounter">Visitor Count: 0</div>
+  <!-- Visitor Counter di kiri atas -->
+  <div id="visitorCounter" class="visitor-counter">Visitor count: 0</div>
 
-  <main>
-    <section class="profile-section">
-      <div class="foto-wrapper" tabindex="0" aria-label="Profile picture">
-        <img src="your-photo.jpg" alt="Profile Photo" />
-        <div class="tooltip-text">Click to view profile</div>
-      </div>
-      <h1>Your Name</h1>
-      <p class="subtitle">Your subtitle or profession</p>
-    </section>
+  <!-- Pemutar musik -->
+  <audio id="bgm" autoplay loop>
+    <source src="music/bgm.mp3" type="audio/mpeg" />
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
 
-    <section class="links-section">
-      <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener" class="btn facebook animate-left">
-        <i class="fab fa-facebook icon"></i> Facebook
-      </a>
-      <a href="https://github.com/yourprofile" target="_blank" rel="noopener" class="btn github animate-right">
-        <i class="fab fa-github icon"></i> GitHub
-      </a>
-      <a href="https://saweria.co/yourprofile" target="_blank" rel="noopener" class="btn saweria animate-left">
-        <i class="fas fa-donate icon"></i> Saweria
-      </a>
-    </section>
-
-    <!-- Visitor counter lama, jika mau, bisa diaktifkan -->
-    <!-- <div class="visitor-counter" id="visitorCounterMain">Visitor Count: 0</div> -->
-  </main>
-
-  <button id="bgmToggle" aria-label="Toggle Background Music">
+  <!-- Tombol play/pause BGM -->
+  <button id="bgmToggle" title="Play / Pause BGM">
     <i class="fas fa-music"></i>
   </button>
 
-  <div id="bgmPopup"></div>
+  <!-- Popup judul BGM -->
+  <div id="bgmPopup">BGM 1</div>
 
-  <audio id="bgmAudio" loop>
-    <source src="your-music.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+  <main>
+    <section class="profile-section">
+      <label for="uploadFoto" class="foto-wrapper" title="Klik untuk ganti foto profil">
+        <img id="fotoProfil" src="image/pp.png" alt="Foto Profil" />
+        <input type="file" id="uploadFoto" accept="image/*" hidden />
+        <span class="tooltip-text">Ganti Foto</span>
+      </label>
+      <h1>Neu_GI</h1>
+      <p class="subtitle">No bio yet</p>
+    </section>
+
+    <section class="links-section">
+      <a href="https://www.facebook.com/yannkiw" target="_blank" rel="noopener" class="btn facebook">
+        <img src="https://facebook.co/favicon.ico" alt="Facebook" class="icon" /> Facebook
+      </a>
+      <a href="https://github.com/Yantrue" target="_blank" rel="noopener" class="btn github">
+        <img src="https://github.com/favicon.ico" alt="GitHub" class="icon" /> GitHub
+      </a>
+      <a href="https://saweria.co/Yneu" target="_blank" rel="noopener" class="btn saweria">
+        <img src="https://saweria.co/favicon.ico" alt="Saweria" class="icon" /> Saweria
+      </a>
+    </section>
+  </main>
 
   <script>
-    // Visitor counter (simulasi dengan localStorage)
+    // Visitor count sederhana dengan localStorage (tanpa backend)
     const visitorCounter = document.getElementById('visitorCounter');
-    let count = localStorage.getItem('visitorCount');
-    count = count ? parseInt(count) : 0;
-    count++;
-    localStorage.setItem('visitorCount', count);
-    visitorCounter.textContent = `Visitor Count: ${count}`;
+    const countKey = 'visitor_count';
+    let count = localStorage.getItem(countKey);
 
-    // Background music toggle
-    const bgmToggle = document.getElementById('bgmToggle');
-    const bgmAudio = document.getElementById('bgmAudio');
-    const bgmPopup = document.getElementById('bgmPopup');
-    let isPlaying = false;
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
+    localStorage.setItem(countKey, count);
+    visitorCounter.textContent = `Visitor count: ${count}`;
 
-    bgmToggle.addEventListener('click', () => {
-      if (isPlaying) {
-        bgmAudio.pause();
-        bgmToggle.classList.remove('playing');
-        bgmPopup.style.display = 'none';
-      } else {
-        bgmAudio.play();
-        bgmToggle.classList.add('playing');
-        bgmPopup.textContent = bgmAudio.querySelector('source').src.split('/').pop();
-        bgmPopup.style.display = 'block';
-        setTimeout(() => {
-          bgmPopup.style.display = 'none';
-        }, 3000);
+    // Ganti foto profil
+    const uploadInput = document.getElementById('uploadFoto');
+    const fotoProfil = document.getElementById('fotoProfil');
+
+    uploadInput.addEventListener('change', () => {
+      const file = uploadInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          fotoProfil.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
       }
-      isPlaying = !isPlaying;
     });
 
-    // Animate buttons on load
+    // BGM dan tombol toggle + popup
+    const bgm = document.getElementById('bgm');
+    const bgmToggle = document.getElementById('bgmToggle');
+    const bgmPopup = document.getElementById('bgmPopup');
+
     window.addEventListener('load', () => {
-      const buttons = document.querySelectorAll('.btn');
-      buttons.forEach((btn, i) => {
-        setTimeout(() => {
-          btn.classList.add(i % 2 === 0 ? 'animate-left' : 'animate-right');
-        }, i * 200);
+      bgmToggle.style.display = 'block';
+      bgmPopup.style.display = 'block';
+      setTimeout(() => {
+        bgmPopup.style.display = 'none';
+      }, 5000);
+    });
+
+    bgmToggle.addEventListener('click', () => {
+      if (bgm.paused) {
+        bgm.play();
+        bgmToggle.classList.add('playing');
+      } else {
+        bgm.pause();
+        bgmToggle.classList.remove('playing');
+      }
+    });
+
+    // Animasi spin saat icon sosial media diklik
+    document.querySelectorAll('.btn .icon').forEach(icon => {
+      icon.closest('a').addEventListener('click', () => {
+        icon.classList.add('spin');
+        setTimeout(() => icon.classList.remove('spin'), 1000);
       });
+    });
+
+    // Animasi tombol masuk dari kanan dan kiri secara bergantian
+    const linkButtons = document.querySelectorAll('.links-section .btn');
+
+    linkButtons.forEach((btn, index) => {
+      const isEven = index % 2 === 0;
+      const animationClass = isEven ? 'animate-left' : 'animate-right';
+
+      setTimeout(() => {
+        btn.classList.add(animationClass);
+      }, index * 200);
     });
   </script>
 </body>
