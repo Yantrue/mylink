@@ -242,3 +242,20 @@ audio {
     padding: 0.8rem 1rem;
   }
 }
+
+/* Visitor counter di kiri atas */
+#visitorCounter {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(44, 62, 80, 0.85);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  user-select: none;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
