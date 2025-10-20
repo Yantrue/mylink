@@ -1,3 +1,11 @@
+// Visitor Counter pakai localStorage
+const counterEl = document.getElementById('visitorCounter');
+let count = localStorage.getItem('visitCount');
+if (!count) count = 0;
+count++;
+localStorage.setItem('visitCount', count);
+counterEl.textContent = `Kunjungan: ${count}`;
+
 // Ganti foto profil
 const uploadInput = document.getElementById('uploadFoto');
 const fotoProfil = document.getElementById('fotoProfil');
@@ -18,7 +26,7 @@ const bgm = document.getElementById('bgm');
 const bgmToggle = document.getElementById('bgmToggle');
 const bgmPopup = document.getElementById('bgmPopup');
 
-// Tampilkan tombol dan popup untuk 5 detik
+// Tampilkan tombol dan popup untuk 5 detik saat halaman load
 window.addEventListener('load', () => {
   bgmToggle.style.display = 'block';
   bgmPopup.style.display = 'block';
@@ -37,7 +45,7 @@ bgmToggle.addEventListener('click', () => {
   }
 });
 
-// Tambahkan animasi spin saat icon sosial media diklik
+// Animasi spin saat icon sosial media diklik
 document.querySelectorAll('.btn .icon').forEach(icon => {
   icon.closest('a').addEventListener('click', () => {
     icon.classList.add('spin');
