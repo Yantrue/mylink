@@ -1,4 +1,4 @@
-/* ==== CSS START ==== */
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -95,10 +95,10 @@ h1 {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* teks di tengah */
   background: #222;
   padding: 1rem 1.5rem;
-  padding-left: 48px;
+  padding-left: 48px; /* tambah padding kiri agar teks tidak nabrak icon */
   border-radius: 10px;
   font-weight: 600;
   font-size: 1.1rem;
@@ -106,9 +106,10 @@ h1 {
   text-decoration: none;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
-  opacity: 0;
+  opacity: 0; /* mulai sembunyi dulu biar animasi muncul */
 }
 
+/* Tombol mulai terlihat saat animasi berjalan */
 .btn.animate-left,
 .btn.animate-right {
   opacity: 1;
@@ -116,8 +117,8 @@ h1 {
 
 .btn .icon {
   position: absolute;
-  left: 16px;
-  top: 50%;
+  left: 16px; /* icon benar-benar di kiri */
+  top: 50%; /* tengah secara vertikal */
   transform: translateY(-50%);
   font-size: 1.3rem;
   width: 24px;
@@ -127,20 +128,20 @@ h1 {
   transition: transform 0.6s ease;
 }
 
+/* Animasi putar icon tombol sosial media */
 .btn.spin .icon {
   animation: spin 1s linear;
 }
 
+/* Warna sesuai brand */
 .btn.facebook {
   background-color: #1877f2;
   box-shadow: 0 4px 12px rgb(24 119 242 / 0.5);
 }
-
 .btn.github {
   background-color: #333;
   box-shadow: 0 4px 12px rgb(51 51 51 / 0.5);
 }
-
 .btn.saweria {
   background-color: #ff5a00;
   box-shadow: 0 4px 12px rgb(255 90 0 / 0.5);
@@ -154,8 +155,8 @@ h1 {
 /* --- Style untuk tombol musik --- */
 #bgmToggle {
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 5px; /* Naikin tombol lebih ke atas */
+  right: 5px; /* Naikin tombol lebih ke kanan */
   background: transparent;
   border: none;
   color: white;
@@ -195,10 +196,13 @@ h1 {
   z-index: 1001;
 }
 
+/* Sembunyikan audio player */
+#audio,
 audio {
   display: none !important;
 }
 
+/* Animasi slide masuk dari kiri dan kanan */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);
@@ -227,22 +231,6 @@ audio {
 
 .btn.animate-right {
   animation: slideInRight 0.6s ease forwards;
-}
-
-/* Visitor counter styling (di kiri atas) */
-.visitor-counter {
-  position: fixed;
-  top: 5px;
-  left: 5px;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  z-index: 1002;
-  user-select: none;
 }
 
 @media (max-width: 400px) {
