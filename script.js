@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebas
 import { getDatabase, ref, runTransaction, onValue }
 from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
-/* Firebase */
 const firebaseConfig = {
   apiKey: "AIzaSyDUAskCal2pbbtLcE-KragstO9PffG51Dg",
   authDomain: "mylink-project-bc60c.firebaseapp.com",
@@ -16,10 +15,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* Visitor Counter */
+/* Visitor */
 const visitRef = ref(db, "visits");
 runTransaction(visitRef, v => (v || 0) + 1);
-
 onValue(visitRef, snap => {
   document.getElementById("visitorCounter").textContent =
     "Kunjungan: " + snap.val();
@@ -37,9 +35,7 @@ function showPopup(text){
   popup.timer = setTimeout(() => popup.classList.remove("show"), 2000);
 }
 
-window.addEventListener("load", () => {
-  showPopup("🎵 Music Ready");
-});
+window.addEventListener("load", () => showPopup("🎵 Music Ready"));
 
 toggle.addEventListener("click", async () => {
   if (bgm.paused) {
@@ -53,7 +49,7 @@ toggle.addEventListener("click", async () => {
   }
 });
 
-/* Button Animation */
+/* Button Anim */
 document.querySelectorAll(".btn").forEach((btn, i) => {
   setTimeout(() => {
     btn.classList.add(i % 2 === 0 ? "animate-left" : "animate-right");
