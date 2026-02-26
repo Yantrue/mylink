@@ -1,127 +1,177 @@
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --ring1:#667eea;
-  --ring2:#764ba2;
-  --ring3:#f093fb;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  font-family:'Poppins',sans-serif;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#667eea,#764ba2);
-  color:#fff;
-  transition:background .5s ease;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
-body.dark{
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+/* ================= CARD ================= */
+main {
+  background: rgba(0,0,0,0.4);
+  padding: 2.5rem 3rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  backdrop-filter: blur(12px);
 }
 
-main{
-  max-width:380px;
-  width:100%;
-  padding:2.5rem 3rem;
-  border-radius:15px;
-  text-align:center;
-  background:rgba(0,0,0,.4);
-  backdrop-filter:blur(6px);
+/* ================= VISITOR ================= */
+#visitorCounter {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: .9rem;
+  z-index: 2000;
 }
 
-#visitorCounter{
-  position:fixed;top:5px;left:5px;
-  background:rgba(0,0,0,.6);
-  padding:6px 10px;border-radius:8px;
-  font-weight:600;font-size:.9rem;
+/* ================= PROFILE ================= */
+.profile-section {
+  margin-bottom: 2rem;
 }
 
-.subtitle{opacity:.8;margin-top:4px}
-
-/* FOTO PRO */
-.foto-wrapper.pro{
-  position:relative;
-  width:150px;height:150px;
-  margin:0 auto 1.5rem;
-  border-radius:50%;
-  transition:transform .15s ease-out;
+.foto-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
-.foto-wrapper.pro img{
-  width:100%;height:100%;
-  border-radius:50%;
-  object-fit:cover;
-  position:relative;z-index:2;
-  transition:transform .4s ease,box-shadow .4s ease;
-  box-shadow:0 0 25px rgba(255,255,255,.35);
+.foto-wrapper img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  position: relative;
+  transition: transform .4s ease;
 }
 
-.foto-wrapper.pro:hover img{
-  transform:scale(1.08);
-  box-shadow:0 0 45px rgba(255,255,255,.8);
+.foto-wrapper:hover img {
+  transform: scale(1.08);
 }
 
-.foto-wrapper.pro::before{
-  content:"";
-  position:absolute;
-  inset:-6px;
-  border-radius:50%;
-  background:linear-gradient(120deg,var(--ring1),var(--ring2),var(--ring3),var(--ring1));
-  animation:ringRotate 6s linear infinite;
-  z-index:1;
+/* Glow */
+.foto-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.5), transparent 70%);
+  filter: blur(18px);
+  z-index: 0;
 }
 
-.foto-wrapper.pro::after{
-  content:"";
-  position:absolute;
-  inset:-14px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.35),transparent 70%);
-  filter:blur(12px);
-  z-index:0;
+/* Ring */
+.ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid hsl(0,100%,70%);
+  animation: hue 6s linear infinite;
 }
 
-@keyframes ringRotate{to{transform:rotate(360deg)}}
-
-/* LINKS */
-.links-section{
-  display:flex;flex-direction:column;gap:1.3rem;
+@keyframes hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
 }
 
-.btn{
-  padding:1rem;
-  border-radius:10px;
-  text-decoration:none;
-  color:#fff;font-weight:600;
-  transition:.25s ease;
+/* ================= LINKS ================= */
+.links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
-
-.facebook{background:#1877f2}
-.instagram{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
-.tako{background:linear-gradient(45deg,#0093e9,#80d0c7)}
-.discord{background:#5865f2}
-
-/* BUTTONS */
-#bgmToggle,#themeToggle{
-  position:fixed;
-  background:rgba(0,0,0,.4);
-  border:none;color:#fff;
-  font-size:22px;padding:10px;
-  border-radius:50%;
-  cursor:pointer;
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem 1rem 48px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
 }
 
-#bgmToggle{top:5px;right:5px}
-#themeToggle{bottom:10px;right:10px}
+.btn .icon {
+  position: absolute;
+  left: 16px;
+  width: 22px;
+}
 
-#bgmToggle.playing{animation:spin 3s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* Brands */
+.facebook { background: #1877f2; }
+.instagram { background: linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
+.discord { background: #5865f2; }
 
-@media(max-width:480px){
-  .foto-wrapper.pro::before,
-  .foto-wrapper.pro::after{filter:blur(6px)}
+/* Animations */
+@keyframes slideLeft {
+  from { opacity:0; transform: translateX(-40px); }
+  to { opacity:1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity:0; transform: translateX(40px); }
+  to { opacity:1; transform: translateX(0); }
+}
+
+.animate-left { animation: slideLeft .6s ease forwards; }
+.animate-right { animation: slideRight .6s ease forwards; }
+
+/* ================= MUSIC ================= */
+#bgmToggle {
+  position: fixed;
+  top: 5px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+#bgmToggle.playing {
+  animation: spin 3s linear infinite;
+}
+
+#bgmPopup {
+  position: fixed;
+  top: 52px;
+  right: 8px;
+  background: rgba(0,0,0,.75);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .75rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: .3s;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+#bgmPopup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile performance */
+@media (max-width: 480px) {
+  .ring { animation-duration: 10s; }
 }
