@@ -1,3 +1,6 @@
+/* =========================
+   🌐 RESET & BASE
+========================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,70 +9,84 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
+/* =========================
+   📦 MAIN CONTAINER
+========================= */
 main {
-  background: rgba(0,0,0,0.4);
-  padding: 2.5rem 3rem;
-  border-radius: 15px;
   width: 100%;
   max-width: 380px;
+  padding: 2.5rem 3rem;
+  border-radius: 15px;
   text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
 }
 
+/* =========================
+   👀 VISITOR COUNTER
+========================= */
 #visitorCounter {
   position: fixed;
   top: 5px;
   left: 5px;
-  background: rgba(0,0,0,0.6);
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: .9rem;
   z-index: 1100;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
 }
 
+/* =========================
+   👤 PROFILE SECTION
+========================= */
 .profile-section {
   margin-bottom: 2rem;
 }
 
 .foto-wrapper {
-  cursor: pointer;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .foto-wrapper img {
   width: 140px;
   height: 140px;
+  object-fit: cover;
   border-radius: 50%;
   border: 3px solid #fff;
-  object-fit: cover;
 }
 
+/* Tooltip */
 .tooltip-text {
   position: absolute;
-  bottom: 5px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
   padding: 4px 8px;
+  font-size: 0.8rem;
   border-radius: 6px;
-  font-size: .8rem;
+  background: rgba(0, 0, 0, 0.7);
   opacity: 0;
-  transition: .3s;
+  transition: opacity 0.3s ease;
 }
 
 .foto-wrapper:hover .tooltip-text {
   opacity: 1;
 }
 
+/* =========================
+   🔗 LINKS SECTION
+========================= */
 .links-section {
   display: flex;
   flex-direction: column;
@@ -77,65 +94,103 @@ main {
 }
 
 .btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 1rem 1.5rem 1rem 48px;
   border-radius: 10px;
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-weight: 600;
-  position: relative;
+
   opacity: 0;
+  transform: translateY(0);
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.btn.animate-left,
-.btn.animate-right {
-  opacity: 1;
+.btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 .btn .icon {
   position: absolute;
   left: 16px;
   top: 50%;
-  transform: translateY(-50%);
   width: 24px;
+  transform: translateY(-50%);
 }
 
-/* FIX SPIN */
-.icon.spin {
-  animation: spin 1s linear;
+/* =========================
+   🎨 BRAND COLORS
+========================= */
+.facebook {
+  background: #1877f2;
 }
 
-/* BRAND COLORS */
-.facebook { background: #1877f2; }
-.instagram { background: linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
-.tako { background: linear-gradient(45deg,#0093e9,#80d0c7); }
-.discord { background: #5865f2; }
+.instagram {
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+}
 
+.tako {
+  background: linear-gradient(45deg, #0093e9, #80d0c7);
+}
+
+.discord {
+  background: #5865f2;
+}
+
+/* =========================
+   ✨ ANIMATIONS
+========================= */
 @keyframes slideInLeft {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.btn.animate-left { animation: slideInLeft .6s ease forwards; }
-.btn.animate-right { animation: slideInRight .6s ease forwards; }
+.btn.animate-left {
+  opacity: 1;
+  animation: slideInLeft 0.6s ease forwards;
+}
 
+.btn.animate-right {
+  opacity: 1;
+  animation: slideInRight 0.6s ease forwards;
+}
+
+/* =========================
+   🎵 BGM CONTROL
+========================= */
 #bgmToggle {
   position: fixed;
   top: 5px;
   right: 5px;
+  display: none;
+
   background: none;
   border: none;
-  color: white;
+  color: #fff;
   font-size: 28px;
   cursor: pointer;
-  display: none;
 }
 
 #bgmToggle.playing {
@@ -146,14 +201,21 @@ main {
   position: fixed;
   top: 40px;
   right: 5px;
-  background: rgba(0,0,0,0.75);
   padding: 8px 12px;
   border-radius: 8px;
+  background: rgba(0, 0, 0, 0.75);
   display: none;
 }
 
-audio { display: none; }
+audio {
+  display: none;
+}
 
+/* =========================
+   🔄 UTIL
+========================= */
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
