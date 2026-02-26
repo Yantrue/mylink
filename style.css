@@ -14,7 +14,6 @@ body {
   color: #fff;
 }
 
-/* ================= MAIN CARD ================= */
 main {
   background: rgba(0,0,0,.4);
   padding: 2.5rem 3rem;
@@ -24,7 +23,6 @@ main {
   text-align: center;
 }
 
-/* ================= VISITOR ================= */
 #visitorCounter {
   position: fixed;
   top: 8px;
@@ -33,13 +31,11 @@ main {
   padding: 6px 10px;
   border-radius: 8px;
   font-size: .85rem;
-  z-index: 2000;
+  z-index: 3000;
 }
 
-/* ================= PROFILE ================= */
-.profile-section {
-  margin-bottom: 2rem;
-}
+/* PROFILE */
+.profile-section { margin-bottom: 2rem; }
 
 .foto-wrapper {
   position: relative;
@@ -57,7 +53,7 @@ main {
   z-index: 2;
 }
 
-/* Neon Ring */
+/* RING */
 .foto-wrapper::before {
   content: "";
   position: absolute;
@@ -69,9 +65,10 @@ main {
   );
   animation: spin 4s linear infinite;
   z-index: 1;
+  pointer-events: none; /* FIX */
 }
 
-/* Glow */
+/* GLOW */
 .foto-wrapper::after {
   content: "";
   position: absolute;
@@ -81,23 +78,19 @@ main {
   filter: blur(18px);
   opacity: .6;
   z-index: 0;
+  pointer-events: none; /* FIX */
 }
 
-h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
+h1 { font-size: 1.5rem; }
+.subtitle { opacity: .85; font-size: .9rem; }
 
-.subtitle {
-  opacity: .85;
-  font-size: .9rem;
-}
-
-/* ================= LINKS ================= */
+/* LINKS */
 .links-section {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  position: relative;
+  z-index: 5;
 }
 
 .btn {
@@ -111,22 +104,23 @@ h1 {
   color: white;
   font-weight: 600;
   opacity: 0;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* icons */
 .icon {
   position: absolute;
   left: 16px;
   width: 24px;
 }
 
-/* brand colors */
+/* COLORS */
 .facebook { background: #1877f2; }
 .instagram { background: linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
 .discord { background: #5865f2; }
 .tako { background: linear-gradient(45deg,#ff4b4b,#ff7a7a); }
 
-/* animations */
+/* ANIM */
 @keyframes slideLeft {
   from { transform: translateX(-80px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
@@ -135,11 +129,10 @@ h1 {
   from { transform: translateX(80px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
-
 .animate-left { animation: slideLeft .6s ease forwards; }
 .animate-right { animation: slideRight .6s ease forwards; }
 
-/* ================= MUSIC ================= */
+/* MUSIC */
 #bgmToggle {
   position: fixed;
   top: 8px;
@@ -149,12 +142,10 @@ h1 {
   color: white;
   font-size: 26px;
   cursor: pointer;
-  z-index: 2000;
+  z-index: 3000;
 }
 
-#bgmToggle.playing {
-  animation: spin 3s linear infinite;
-}
+#bgmToggle.playing { animation: spin 3s linear infinite; }
 
 #bgmPopup {
   position: fixed;
@@ -168,7 +159,7 @@ h1 {
   transform: translateY(-6px);
   transition: .3s;
   pointer-events: none;
-  z-index: 2000;
+  z-index: 3000;
 }
 
 #bgmPopup.show {
