@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeuLink</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linktree Pro</title>
 
+  <!-- Font & Icon -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-<div id="visitorCounter">Loading...</div>
+  <!-- Visitor -->
+  <div id="visitorCounter">👀 1</div>
 
-<audio id="bgm" loop>
-  <source src="music/bgm.mp3" type="audio/mpeg">
-</audio>
+  <!-- Music Button -->
+  <button id="bgmToggle" title="Music">
+    <i class="fas fa-music"></i>
+  </button>
+  <div id="bgmPopup">Music</div>
 
-<button id="bgmToggle"><i class="fas fa-music"></i></button>
-<div id="bgmPopup">Music</div>
+  <audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-<button id="themeToggle"><i class="fas fa-moon"></i></button>
+  <main>
+    <!-- PROFILE -->
+    <section class="profile-section">
+      <div class="foto-wrapper">
+        <div class="ring"></div>
+        <img src="foto.jpg" alt="Profile">
+      </div>
+      <h2>@username</h2>
+    </section>
 
-<main>
-  <section class="profile-section">
-    <div class="foto-wrapper pro">
-      <img src="image/pp.png" alt="Foto Profil">
-    </div>
-    <h1>Neu_GI</h1>
-    <p class="subtitle">Support me on</p>
-  </section>
+    <!-- LINKS -->
+    <section class="links-section">
+      <a href="#" class="btn facebook animate-left">
+        <img src="fb.svg" class="icon"> Facebook
+      </a>
+      <a href="#" class="btn instagram animate-right">
+        <img src="ig.svg" class="icon"> Instagram
+      </a>
+      <a href="#" class="btn discord animate-left">
+        <img src="dc.svg" class="icon"> Discord
+      </a>
+    </section>
+  </main>
 
-  <section class="links-section">
-    <a href="https://www.facebook.com/yannkiw" target="_blank" class="btn facebook">Facebook</a>
-    <a href="https://www.instagram.com/nenepiu_" target="_blank" class="btn instagram">Instagram</a>
-    <a href="https://tako.id/Nuegi" target="_blank" class="btn tako">Tako</a>
-    <a href="https://discord.gg/PM6pfJEhjr" target="_blank" class="btn discord">Discord</a>
-  </section>
-</main>
-
-<script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
